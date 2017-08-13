@@ -20,9 +20,9 @@ func main() {
 			log.Fatal(err)
 		}
 		args := strings.Split(line, " ")
-		log.Printf("Command with argument: %s, %s", args[0], args[1])
-		if strings.TrimRight(args[0], "\n") == "dir" || strings.TrimRight(args[0], "\n") == "ls" {
-			Dir(strings.TrimRight(args[1], "\n"))
+		log.Printf("Command with argument: %s", args)
+		if Trim(args[0]) == "dir" || Trim(args[0]) == "ls" {
+			Dir(Trim(args[1]))
 		} else {
 			log.Print("Wrong command.")
 		}
