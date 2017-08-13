@@ -20,7 +20,7 @@ func main() {
 			log.Fatal(err)
 		}
 		args := strings.Split(line, " ")
-		log.Printf("Commands with arguments: %s, %s", args[0], args[1])
+		log.Printf("Command with argument: %s, %s", args[0], args[1])
 		if strings.TrimRight(args[0], "\n") == "dir" || strings.TrimRight(args[0], "\n") == "ls" {
 			Dir(strings.TrimRight(args[1], "\n"))
 		} else {
