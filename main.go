@@ -7,7 +7,9 @@ import (
 	"strings"
 )
 
-var CurrentFolder string = "/users/aleksandrbogomolov/"
+const RootFolder string  = "/users/aleksandrbogomolov/"
+
+var CurrentFolder string = RootFolder
 
 func main() {
 	reader := bufio.NewReader(os.Stdin)
@@ -22,6 +24,8 @@ func main() {
 		switch TrimRight(args[0]) {
 		case "ls":
 			ListFile(args)
+		case "cd":
+			ChangeDir(args)
 		default:
 			log.Print("Wrong command.")
 		}

@@ -16,6 +16,13 @@ func GetCurrentFolder(path string) string {
 	}
 }
 
+func GetPath(args []string) string {
+	if len(args) > 1 {
+		return args[1]
+	}
+	return ""
+}
+
 /**
 Returning string flag if file is dir or not.
  */
