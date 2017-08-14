@@ -4,6 +4,7 @@ import (
 	"io/ioutil"
 	"log"
 	"fmt"
+	"strings"
 )
 
 func ListFile(args []string) {
@@ -20,7 +21,19 @@ func ListFile(args []string) {
 }
 
 func ChangeDir(path []string) {
-
+	newPath := GetPath(path)
+	switch newPath {
+	case "..":
+		if CurrentFolder != RootFolder {
+			CurrentFolder = CurrentFolder[0:strings.LastIndex(CurrentFolder, "/")]
+		} else {
+			CurrentFolder = RootFolder
+		}
+	case "":
+		CurrentFolder = RootFolder
+	default:
+		CurrentFolder = CurrentFolder + "/" + newPath
+	}
 }
 
 func Copy(from string, to string) {

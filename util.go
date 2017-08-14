@@ -1,7 +1,6 @@
 package main
 
 import (
-	"strings"
 	"fmt"
 )
 
@@ -10,7 +9,7 @@ Getting the current folder path.
  */
 func GetCurrentFolder(path string) string {
 	if path != "" {
-		return TrimRight(path)
+		return path
 	} else {
 		return CurrentFolder
 	}
@@ -33,13 +32,6 @@ func IsDirFlag(flag bool) string {
 	return "-"
 }
 
-/**
-Trim the right delimiter from getting strings.
- */
-func TrimRight(s string) string {
-	return strings.TrimRight(s, "\n")
-}
-
 func PrintDelimiter() {
-	fmt.Println("==============================================================")
+	fmt.Println("================================================================")
 }

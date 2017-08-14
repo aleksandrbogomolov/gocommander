@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-const RootFolder string  = "/users/aleksandrbogomolov/"
+const RootFolder string = "/users/aleksandrbogomolov"
 
 var CurrentFolder string = RootFolder
 
@@ -19,9 +19,9 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		args := strings.Split(line, " ")
+		args := strings.Split(strings.TrimRight(line, "\n"), " ")
 		log.Printf("Command with argument: %s", args)
-		switch TrimRight(args[0]) {
+		switch args[0] {
 		case "ls":
 			ListFile(args)
 		case "cd":
