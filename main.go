@@ -5,14 +5,18 @@ import (
 	"bufio"
 	"log"
 	"strings"
+	"time"
 )
 
-const RootFolder string = "/users/aleksandrbogomolov"
+const rootFolder = "/users/aleksandrbogomolov"
 
-var CurrentFolder string = RootFolder
+const userName = "aleksandrbogomolov"
+
+var CurrentFolder string = rootFolder
 
 func main() {
 	reader := bufio.NewReader(os.Stdin)
+	printGreeting()
 	ListFile([]string{CurrentFolder})
 	for {
 		line, err := reader.ReadString('\n')
@@ -26,8 +30,15 @@ func main() {
 			ListFile(args)
 		case "cd":
 			ChangeDir(args)
+		case "cp":
+			Copy(args[1], args[2])
 		default:
 			log.Print("Wrong command.")
 		}
+		printGreeting()
 	}
+}
+
+func printGreeting() {
+	log.Printf("%s in %s", userName, CurrentFolder)
 }

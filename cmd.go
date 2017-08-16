@@ -5,6 +5,8 @@ import (
 	"log"
 	"fmt"
 	"strings"
+	"os"
+	"io"
 )
 
 func ListFile(args []string) {
@@ -24,20 +26,34 @@ func ChangeDir(path []string) {
 	newPath := GetPath(path)
 	switch newPath {
 	case "..":
-		if CurrentFolder != RootFolder {
+		if CurrentFolder != rootFolder {
 			CurrentFolder = CurrentFolder[0:strings.LastIndex(CurrentFolder, "/")]
 		} else {
-			CurrentFolder = RootFolder
+			CurrentFolder = rootFolder
 		}
 	case "":
-		CurrentFolder = RootFolder
+		CurrentFolder = rootFolder
 	default:
 		CurrentFolder = CurrentFolder + "/" + newPath
 	}
 }
 
-func Copy(from string, to string) {
-
+func Copy(src string, dst string) {
+	in, err := os.Open(src)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer in.Close()
+	out, err := os.Create(dst)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer out.Close()
+	_, err = io.Copy(out, in)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Printf("Copied file %s to %s.", in, out)
 }
 
 func Move(from string, to string) {
