@@ -17,7 +17,7 @@ func ListFile(args []string) {
 	}
 	PrintDelimiter()
 	for _, file := range files {
-		fmt.Printf("| %-40s | %10d | %4s |\n", file.Name(), file.Size(), IsDirFlag(file.IsDir()))
+		fmt.Printf("| %-90.90s | %15d | %4.4s |\n", file.Name(), file.Size(), IsDirFlag(file.IsDir()))
 	}
 	PrintDelimiter()
 }
@@ -56,18 +56,15 @@ func Copy(src string, dst string) {
 	log.Printf("Copied file %s to %s.", in, out)
 }
 
-func Move(from string, to string) {
-
+func Move(src string, dst string) {
+	Copy(src, dst)
+	Remove(src)
 }
 
-func Remove(path string) {
-
+func Remove(src string) {
+	os.Remove(src)
 }
 
-func MakeFile(path string) {
-
-}
-
-func MakeDir(path string) {
-
+func MakeDir(src string) {
+	os.Mkdir(src, os.ModeDir)
 }

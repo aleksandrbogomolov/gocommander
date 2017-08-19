@@ -5,7 +5,6 @@ import (
 	"bufio"
 	"log"
 	"strings"
-	"time"
 )
 
 const rootFolder = "/users/aleksandrbogomolov"
@@ -32,6 +31,8 @@ func main() {
 			ChangeDir(args)
 		case "cp":
 			Copy(args[1], args[2])
+		case "exit":
+			os.Exit(0)
 		default:
 			log.Print("Wrong command.")
 		}
