@@ -31,6 +31,12 @@ func main() {
 			ChangeDir(args)
 		case "cp":
 			Copy(args[1], args[2])
+		case "mv":
+			Move(args[1], args[2])
+		case "rm":
+			Remove(args[1])
+		case "mkdir":
+			MakeDir(args[1])
 		case "exit":
 			os.Exit(0)
 		default:
