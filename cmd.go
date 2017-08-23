@@ -17,7 +17,7 @@ func ListFile(args []string) {
 	}
 	PrintDelimiter()
 	for _, file := range files {
-		fmt.Printf("| %-90.90s | %15d | %4.4s |\n", file.Name(), file.Size(), IsDirFlag(file.IsDir()))
+		fmt.Printf("| %-90.90s | %15d | %4.4s |\n", file.Name(), file.Size(), IsDir(file.IsDir()))
 	}
 	PrintDelimiter()
 }
@@ -62,9 +62,9 @@ func Move(src string, dst string) {
 }
 
 func Remove(src string) {
-	os.Remove(src)
+	os.Remove(CurrentFolder + "/" + src)
 }
 
 func MakeDir(src string) {
-	os.Mkdir(src, os.ModeDir)
+	os.Mkdir(CurrentFolder + "/" + src, os.ModePerm)
 }

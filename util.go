@@ -25,7 +25,7 @@ func GetPath(args []string) string {
 /**
 Returning string flag if file is dir or not.
  */
-func IsDirFlag(flag bool) string {
+func IsDir(flag bool) string {
 	if flag {
 		return "dir"
 	}
